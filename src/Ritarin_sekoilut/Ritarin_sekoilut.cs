@@ -91,7 +91,8 @@
             }
         }
 
-        static void Damage()
+        // Makes the player choose a valid action from choices available
+        static void ChooseAction()
         {
             // Contents here
         }
