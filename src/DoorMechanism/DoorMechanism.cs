@@ -22,24 +22,29 @@
         {
             // Set the starting state for the door
             DoorState doorState = DoorState.Open;
+            // Ask what PlayerAction, store into playerAction
+            PlayerAction playerAction = PlayerAction.Open;
             // Placeholder so the methods I'm working on are bright in the editor
-            DoorAction();
+            DoorAction(doorState, playerAction);
         }
 
-        static void DoorAction()
+        static void DoorAction(DoorState doorState, PlayerAction playerAction)
         {
-            // Hmm could it be done this way instead of four different methods?
-            // Or perhaps... both?
             // Placeholders so the methods I'm working on are bright in the editor
-            DoorOpen();
+            DoorOpen(doorState);
             DoorLock();
             DoorUnlock();
             DoorClose();
         }
 
-        static void DoorOpen()
+        static void DoorOpen(DoorState doorState)
         {
             Console.WriteLine("You try to open the door.");
+            if (doorState == DoorState.Closed)
+            {
+                doorState = DoorState.Open;
+                Console.WriteLine($"You successfully open the door. It is now {doorState}");
+            }
         }
         static void DoorLock()
         {
