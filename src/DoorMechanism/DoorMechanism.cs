@@ -1,6 +1,6 @@
 ﻿namespace DoorMechanism
 {
-    internal class Program
+    internal class DoorMechanism
     {
         // Enums for door states and player actions
         enum DoorState
