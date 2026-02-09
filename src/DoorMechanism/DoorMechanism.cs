@@ -7,7 +7,8 @@
         {
             open,
             closed,
-            locked
+            locked,
+            undefined
         }
         // Numerical values allow for conversion to integer and back
         enum PlayerAction
@@ -15,15 +16,25 @@
             Open = 0,
             Lock = 1,
             Unlock = 2,
-            Close = 3
+            Close = 3,
+            Enter = 4
         }
 
         static void Main(string[] args)
         {
             // Set the starting state for the door
             DoorState doorState = DoorState.open;
+            Console.WriteLine("You encounter a tricky door.");
+            // Console.WriteLine("What do you wish to do to the door?");
+
             // Ask what PlayerAction, store into playerAction
-            // TODO
+            string[] choices = Enum.GetNames(typeof(PlayerAction));
+            for (int i = 0; i < choices.Length-1; i++) 
+            {
+                Console.WriteLine(choices[i]);
+            }
+            //for(string s in Enum.GetNames<PlayerAction>())
+            //    Console.WriteLine(s);
             PlayerAction playerAction = PlayerAction.Open;
             // Placeholder so the methods I'm working on are bright in the editor
             DoorAction(doorState, playerAction);
@@ -31,11 +42,22 @@
 
         static void DoorAction(DoorState doorState, PlayerAction playerAction)
         {
-            // Placeholders so the methods I'm working on are bright in the editor
-            DoorOpen(doorState);
-            DoorLock(doorState);
-            DoorUnlock(doorState);
-            DoorClose(doorState);
+
+            switch (playerAction)
+            {
+                case PlayerAction.Open:
+                    DoorOpen(doorState);
+                    break;
+                case PlayerAction.Lock:
+                    DoorLock(doorState);
+                    break;
+                case PlayerAction.Unlock:
+                    DoorUnlock(doorState);
+                    break;
+                case PlayerAction.Close:
+                    DoorClose(doorState);
+                    break;
+            }
         }
 
         static DoorState DoorOpen(DoorState doorState)
@@ -79,6 +101,7 @@
                     return doorState;
             }
         }
+
         static DoorState DoorUnlock(DoorState doorState)
         {
             Console.WriteLine("You try to unlock the door.");
@@ -99,6 +122,7 @@
                     return doorState;
             }
         }
+
         static DoorState DoorClose(DoorState doorState)
         {
             Console.WriteLine("You try to close the door.");
@@ -119,5 +143,6 @@
                     return doorState;
             }
         }
+
     }
 }
