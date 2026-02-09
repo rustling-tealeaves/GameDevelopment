@@ -44,46 +44,80 @@
             switch (doorState)
             {
                 case DoorState.open:
-                    Console.WriteLine($"The door is already {doorState}");
-                    break;
+                    Console.WriteLine($"The door is already {doorState}.");
+                    return DoorState.open;
                 case DoorState.closed:
                     doorState = DoorState.open;
-                    Console.WriteLine($"You successfully open the door. It is now {doorState}");
+                    Console.WriteLine($"You successfully open the door. It is now {doorState}.");
                     return DoorState.open;
                 case DoorState.locked:
-                    Console.WriteLine($"The door is {doorState}");
-                    break;
+                    Console.WriteLine($"The door is {doorState}.");
+                    return DoorState.locked;
                 default:
-                    Console.WriteLine($"You're not sure how you would do that. The door remains {doorState}");
-                    break;
-
+                    Console.WriteLine($"You're not sure how you would do that. The door remains {doorState}.");
+                    return doorState;
             }
-
-        
-            if (doorState == DoorState.closed)
-            {
-                
-            }
-            else
-            {
-                
-            }
-            return doorState;
-
-           
         }
 
-        static void DoorLock(DoorState doorState)
+        static DoorState DoorLock(DoorState doorState)
         {
             Console.WriteLine("You try to lock the door.");
+            switch (doorState)
+            {
+                case DoorState.open:
+                    Console.WriteLine($"The door is {doorState}.");
+                    return DoorState.open;
+                case DoorState.closed:
+                    doorState = DoorState.locked;
+                    Console.WriteLine($"You successfully lock the door. It is now {doorState}.");
+                    return DoorState.locked;
+                case DoorState.locked:
+                    Console.WriteLine($"The door is already {doorState}.");
+                    return DoorState.locked;
+                default:
+                    Console.WriteLine($"You're not sure how you would do that. The door remains {doorState}.");
+                    return doorState;
+            }
         }
-        static void DoorUnlock(DoorState doorState)
+        static DoorState DoorUnlock(DoorState doorState)
         {
             Console.WriteLine("You try to unlock the door.");
+            switch (doorState)
+            {
+                case DoorState.open:
+                    Console.WriteLine($"The door is {doorState}.");
+                    return DoorState.open;
+                case DoorState.closed:
+                    Console.WriteLine($"The door is already unlocked. It remains {doorState}.");
+                    return DoorState.closed;
+                case DoorState.locked:
+                    doorState = DoorState.closed;
+                    Console.WriteLine($"You successfully unlock the door. It is still {doorState}.");
+                    return DoorState.closed;
+                default:
+                    Console.WriteLine($"You're not sure how you would do that. The door remains {doorState}.");
+                    return doorState;
+            }
         }
-        static void DoorClose(DoorState doorState)
+        static DoorState DoorClose(DoorState doorState)
         {
             Console.WriteLine("You try to close the door.");
+            switch (doorState)
+            {
+                case DoorState.open:
+                    doorState = DoorState.closed;
+                    Console.WriteLine($"You successfully close the door. It is now {doorState}.");
+                    return DoorState.closed;
+                case DoorState.closed:
+                    Console.WriteLine($"The door is already {doorState}.");
+                    return DoorState.closed;
+                case DoorState.locked:
+                    Console.WriteLine($"The door is {doorState}.");
+                    return DoorState.locked;
+                default:
+                    Console.WriteLine($"You're not sure how you would do that. The door remains {doorState}.");
+                    return doorState;
+            }
         }
     }
 }
