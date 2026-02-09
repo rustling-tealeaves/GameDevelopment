@@ -25,16 +25,15 @@
             // Set the starting state for the door
             DoorState doorState = DoorState.open;
             Console.WriteLine("You encounter a tricky door.");
-            // Console.WriteLine("What do you wish to do to the door?");
-
-            // Ask what PlayerAction, store into playerAction
+            Console.WriteLine("Some common door related actions include:");
             string[] choices = Enum.GetNames(typeof(PlayerAction));
-            for (int i = 0; i < choices.Length-1; i++) 
+            for (int i = 0; i < choices.Length - 1; i++)
             {
                 Console.WriteLine(choices[i]);
             }
-            //for(string s in Enum.GetNames<PlayerAction>())
-            //    Console.WriteLine(s);
+
+            // Ask what PlayerAction, store into playerAction
+
             PlayerAction playerAction = PlayerAction.Open;
             // Placeholder so the methods I'm working on are bright in the editor
             DoorAction(doorState, playerAction);
