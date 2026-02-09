@@ -5,9 +5,9 @@
         // Enums for door states and player actions
         enum DoorState
         {
-            Open,
-            Closed,
-            Locked
+            open,
+            closed,
+            locked
         }
         // Numerical values allow for conversion to integer and back
         enum PlayerAction
@@ -21,8 +21,9 @@
         static void Main(string[] args)
         {
             // Set the starting state for the door
-            DoorState doorState = DoorState.Open;
+            DoorState doorState = DoorState.open;
             // Ask what PlayerAction, store into playerAction
+            // TODO
             PlayerAction playerAction = PlayerAction.Open;
             // Placeholder so the methods I'm working on are bright in the editor
             DoorAction(doorState, playerAction);
@@ -32,29 +33,44 @@
         {
             // Placeholders so the methods I'm working on are bright in the editor
             DoorOpen(doorState);
-            DoorLock();
-            DoorUnlock();
-            DoorClose();
+            DoorLock(doorState);
+            DoorUnlock(doorState);
+            DoorClose(doorState);
         }
 
-        static void DoorOpen(DoorState doorState)
+        static DoorState DoorOpen(DoorState doorState)
         {
             Console.WriteLine("You try to open the door.");
-            if (doorState == DoorState.Closed)
+            if (doorState == DoorState.closed)
             {
-                doorState = DoorState.Open;
+                doorState = DoorState.open;
                 Console.WriteLine($"You successfully open the door. It is now {doorState}");
+                return DoorState.open;
             }
+            else if (doorState == DoorState.locked)
+            {
+                Console.WriteLine($"The door is {doorState}");
+            }
+            else if (doorState == DoorState.open)
+            {
+                Console.WriteLine($"The door is already {doorState}");
+            }
+            else
+            {
+                Console.WriteLine($"You're not sure how you would do that. The door remains {doorState}");
+            }
+            return doorState;
         }
-        static void DoorLock()
+
+        static void DoorLock(DoorState doorState)
         {
             Console.WriteLine("You try to lock the door.");
         }
-        static void DoorUnlock()
+        static void DoorUnlock(DoorState doorState)
         {
             Console.WriteLine("You try to unlock the door.");
         }
-        static void DoorClose()
+        static void DoorClose(DoorState doorState)
         {
             Console.WriteLine("You try to close the door.");
         }
