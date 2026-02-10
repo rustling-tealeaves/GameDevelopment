@@ -24,7 +24,7 @@
         {
             // Set the starting state for the door
             DoorState doorState = DoorState.closed;
-            Console.WriteLine("You encounter a tricky door.");
+            Console.WriteLine($"You encounter a tricky door. It seems to be {doorState}.");
             Console.WriteLine("Some common door related actions include:");
             string[] choices = Enum.GetNames(typeof(PlayerAction));
             for (int i = 0; i < choices.Length - 1; i++)
