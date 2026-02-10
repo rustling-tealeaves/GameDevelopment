@@ -32,7 +32,8 @@
                 Console.WriteLine($"{i}: {choices[i]}");
             }
 
-            DoorAction(doorState);
+            while (doorState != DoorState.undefined)
+                doorState = DoorAction(doorState);
         }
 
         /* A started attempt of making what DoorAction was always supposed to be
@@ -77,22 +78,22 @@
 
             if (decision == "0" || decision == "Open" || decision == "open")
             {
-                DoorOpen(doorState);
+                doorState = DoorOpen(doorState);
                 return doorState;
             }
             else if (decision == "1" || decision == "Lock" || decision == "lock")
             {
-                DoorLock(doorState);
+                doorState = DoorLock(doorState);
                 return doorState;
             }
             else if (decision == "2" || decision == "Unlock" || decision == "unlock")
             {
-                DoorUnlock(doorState);
+                doorState = DoorUnlock(doorState);
                 return doorState;
             }
             else if (decision == "3" || decision == "Close" || decision == "close")
             {
-                DoorClose(doorState);
+                doorState = DoorClose(doorState);
                 return doorState;
             }
             else if ((decision == "4" || decision == "Enter" || decision == "enter") && doorState == DoorState.open)
