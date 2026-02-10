@@ -23,7 +23,7 @@
         static void Main(string[] args)
         {
             // Set the starting state for the door
-            DoorState doorState = DoorState.open;
+            DoorState doorState = DoorState.closed;
             Console.WriteLine("You encounter a tricky door.");
             Console.WriteLine("Some common door related actions include:");
             string[] choices = Enum.GetNames(typeof(PlayerAction));
@@ -32,13 +32,23 @@
                 Console.WriteLine($"{i}: {choices[i]}");
             }
 
-            // Ask what PlayerAction, store into playerAction
-
-            PlayerAction playerAction = PlayerAction.Open;
-            // Placeholder so the methods I'm working on are bright in the editor
-            DoorAction(doorState, playerAction);
+            DoorAction(doorState);
         }
 
+        /* A started attempt of making what DoorAction was always supposed to be
+        static PlayerAction ChooseAction()
+        {
+            Console.WriteLine("Now, what shall you do?");
+            string decision = Console.ReadLine();
+
+            if (decision == "0" || decision == "Open" || decision == "open")
+                return PlayerAction.Open;
+
+            return (PlayerAction) 2;
+        }
+        */
+
+        /* The silly thing that DoorAction accidentally became, preserved for legacy
         static void DoorAction(DoorState doorState, PlayerAction playerAction)
         {
 
@@ -58,6 +68,45 @@
                     break;
             }
         }
+        */
+
+        static DoorState DoorAction(DoorState doorState)
+        {
+            Console.WriteLine("Now, what shall you do?");
+            string decision = Console.ReadLine();
+
+            if (decision == "0" || decision == "Open" || decision == "open")
+            {
+                DoorOpen(doorState);
+                return doorState;
+            }
+            else if (decision == "1" || decision == "Lock" || decision == "lock")
+            {
+                DoorLock(doorState);
+                return doorState;
+            }
+            else if (decision == "2" || decision == "Unlock" || decision == "unlock")
+            {
+                DoorUnlock(doorState);
+                return doorState;
+            }
+            else if (decision == "3" || decision == "Close" || decision == "close")
+            {
+                DoorClose(doorState);
+                return doorState;
+            }
+            else if ((decision == "4" || decision == "Enter" || decision == "enter") && doorState == DoorState.open)
+            {
+                Console.WriteLine($"Through the {doorState} door, you successfully escape.");
+                doorState = DoorState.undefined;
+                return doorState;
+            }
+            else
+            {
+                Console.WriteLine($"You're not sure how you would do that. The door remains {doorState}.");
+                return doorState;
+            }
+        }
 
         static DoorState DoorOpen(DoorState doorState)
         {
@@ -75,7 +124,7 @@
                     Console.WriteLine($"The door is {doorState}.");
                     return DoorState.locked;
                 default:
-                    Console.WriteLine($"You're not sure how you would do that. The door remains {doorState}.");
+                    Console.WriteLine($"It seems the door no longer heeds the common laws of physics.");
                     return doorState;
             }
         }
@@ -96,7 +145,7 @@
                     Console.WriteLine($"The door is already {doorState}.");
                     return DoorState.locked;
                 default:
-                    Console.WriteLine($"You're not sure how you would do that. The door remains {doorState}.");
+                    Console.WriteLine($"It seems the door no longer heeds the common laws of physics.");
                     return doorState;
             }
         }
@@ -117,7 +166,7 @@
                     Console.WriteLine($"You successfully unlock the door. It is still {doorState}.");
                     return DoorState.closed;
                 default:
-                    Console.WriteLine($"You're not sure how you would do that. The door remains {doorState}.");
+                    Console.WriteLine($"It seems the door no longer heeds the common laws of physics.");
                     return doorState;
             }
         }
@@ -138,7 +187,7 @@
                     Console.WriteLine($"The door is {doorState}.");
                     return DoorState.locked;
                 default:
-                    Console.WriteLine($"You're not sure how you would do that. The door remains {doorState}.");
+                    Console.WriteLine($"It seems the door no longer heeds the common laws of physics.");
                     return doorState;
             }
         }
