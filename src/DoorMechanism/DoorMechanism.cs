@@ -29,7 +29,7 @@
             string[] choices = Enum.GetNames(typeof(PlayerAction));
             for (int i = 0; i < choices.Length - 1; i++)
             {
-                Console.WriteLine(choices[i]);
+                Console.WriteLine($"{i}: {choices[i]}");
             }
 
             // Ask what PlayerAction, store into playerAction
