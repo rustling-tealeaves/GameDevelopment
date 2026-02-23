@@ -4,7 +4,19 @@
     {
         static void Main(string[] args)
         {
+            // HP for the main characters
+            int hpKnight = 15;
+            int hpOrc = 15;
+
+            PrintSituation(hpKnight, hpOrc); // It just print three lines, telling the situation
             ChooseAction(); // Placeholder so the method is bright while I'm working on it
+        }
+
+        static void PrintSituation(int hpKnight, int hpOrc)
+        {
+            Console.WriteLine(new string('-', 50));
+            Console.WriteLine($"Knight HP: {hpKnight}/15");
+            Console.WriteLine($"Orc HP: {hpOrc}/15");
         }
 
         // Makes the player choose a valid action from choices available
@@ -18,9 +30,24 @@
             Console.WriteLine("2 - Defend with your shield");
             Console.ResetColor(); // Reset colours
 
-            string chosenAction = Console.ReadLine();
+            while (true)
+            {
+                string chosenAction = Console.ReadLine();
 
-            return chosenAction;
+                if (chosenAction == "1")
+                {
+                    return chosenAction;
+                }
+                else if (chosenAction == "2")
+                {
+                    return chosenAction;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid action, try again.");
+                }
+            }
+
         }
     }
 }
