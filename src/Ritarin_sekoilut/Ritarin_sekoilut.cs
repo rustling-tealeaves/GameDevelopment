@@ -9,9 +9,10 @@
             int hpOrc = 15;
 
             PrintSituation(hpKnight, hpOrc); // It just print three lines, telling the situation
-            ChooseAction(); // Placeholder so the method is bright while I'm working on it
+            ChooseAction(); // Not just a placeholder, but still working on it
         }
 
+        // Prints the current HP situation
         static void PrintSituation(int hpKnight, int hpOrc)
         {
             Console.WriteLine(new string('-', 50));
