@@ -4,12 +4,16 @@
     {
         static void Main(string[] args)
         {
-            // HP for the main characters
+            // Set starting HP for the main characters
             int hpKnight = 15;
             int hpOrc = 15;
 
+            // Create instance of the Random class
+            Random random = new Random();
+
             PrintSituation(hpKnight, hpOrc); // Prints three lines, telling the situation
             string chosenAction = ChooseAction(); // Get a valid input from user
+            int damage = RollDamageDie(random); // An oddly complicated Random.Next
         }
 
         // Prints the current HP situation
@@ -46,6 +50,12 @@
                 }
             }
 
+        }
+
+        // The oddly complicated Random.Next
+        static int RollDamageDie(Random random)
+        {
+            return random.Next(1, 7); // Roll 1d6
         }
     }
 }
