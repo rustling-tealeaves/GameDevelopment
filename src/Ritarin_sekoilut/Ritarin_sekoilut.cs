@@ -14,6 +14,8 @@
             PrintSituation(hpKnight, hpOrc); // Prints three lines, telling the situation
             string chosenAction = ChooseAction(); // Get a valid input from user
             int damage = RollDamageDie(random); // An oddly complicated Random.Next
+            int hpOrcNew = CalculateNewHpOrc(hpOrc, chosenAction); // Knight's turn...
+            int hpKnightNew = CalculateNewHpKnight(hpKnight, chosenAction); // ...and Orc's turn.
         }
 
         // Prints the current HP situation
@@ -56,6 +58,18 @@
         static int RollDamageDie(Random random)
         {
             return random.Next(1, 7); // Roll 1d6
+        }
+
+        // Calculate what hpOrc should be at end of turn, based on what Knight does
+        static int CalculateNewHpOrc(int hpOrc, string chosenAction)
+        {
+            return hpOrc;
+        }
+
+        // Calculate what hpKnight should be at end of turn, based on... what Knight does.
+        static int CalculateNewHpKnight(int hpKnight, string chosenAction)
+        {
+            return hpKnight;
         }
     }
 }
