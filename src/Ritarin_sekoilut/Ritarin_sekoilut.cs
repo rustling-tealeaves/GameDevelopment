@@ -8,8 +8,8 @@
             int hpKnight = 15;
             int hpOrc = 15;
 
-            PrintSituation(hpKnight, hpOrc); // It just print three lines, telling the situation
-            ChooseAction(); // Not just a placeholder, but still working on it
+            PrintSituation(hpKnight, hpOrc); // Prints three lines, telling the situation
+            string chosenAction = ChooseAction(); // Get a valid input from user
         }
 
         // Prints the current HP situation
@@ -35,11 +35,8 @@
             {
                 string chosenAction = Console.ReadLine();
 
-                if (chosenAction == "1")
-                {
-                    return chosenAction;
-                }
-                else if (chosenAction == "2")
+                // Make sure the input is valid
+                if (chosenAction == "1" || chosenAction == "2")
                 {
                     return chosenAction;
                 }
